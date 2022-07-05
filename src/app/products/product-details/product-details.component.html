@@ -1,0 +1,10 @@
+<div *ngIf="data">
+    <h1>Product Details for : {{data.product_name}}</h1>
+    <mat-divider></mat-divider>
+    <div style="align-items:center;margin-top: 1rem; margin-left: 1rem;">
+        <p>Product Category : {{data.category.name}}</p>
+        <p>Color : {{data.color}}</p>
+        <p>Quantity in stock : {{data.quantity == 0 ? 'Not available' : data.quantity}}</p>
+        <p>Price : {{data.price}}</p>
+    </div>
+</div>

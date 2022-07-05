@@ -1,0 +1,21 @@
+.mat-card {
+  max-width: 300px;
+  margin: 10px;
+  padding: 0;
+  border-radius: 5px;
+
+  .mat-card-header {
+    background-color: #272c30;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    .mat-card-subtitle{
+      color:white
+    }
+  }
+
+  .mat-card-content,
+  .mat-card-actions {
+    margin-left: 8px
+  }
+}

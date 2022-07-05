@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.table{
+  max-width: 100%;
+  overflow: auto;
+    min-width: 45vw;  // to ensure that it is not too small
+    table {
+      width: 100%;
+      white-space: nowrap;
+      td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    
+}
+.heading{
+  font-family: 'nunito' !important;
+  font-size: 35px;
+  margin: 1rem;
+  height: 2rem;
+}
+.mat-toolbar-row, .mat-toolbar-single-row {
+  background-color: black;
+  border-bottom: solid gray 3px;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+

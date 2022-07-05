@@ -1,0 +1,81 @@
+<div *ngIf="cart_items.length > 0">
+  <div class="heading">Shopping Cart</div>
+  <div class="table">
+    <table #cart_table [dataSource]="cart_items" mat-table>
+      <ng-container matColumnDef="product_name">
+        <th *matHeaderCellDef mat-header-cell><span>Product Name</span></th>
+        <td *matCellDef="let element" mat-cell>{{element.product_name}} </td>
+        <td mat-footer-cell *matFooterCellDef> Total </td>
+      </ng-container>
+
+      <ng-container matColumnDef="color">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Color</th>
+        <td *matCellDef="let element" mat-cell>{{element.color}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Price</th>
+        <td *matCellDef="let element" mat-cell>{{element.price * element.quantity}}</td>
+        <td mat-footer-cell *matFooterCellDef> {{cartTotal() | currency}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th *matHeaderCellDef mat-header-cell>Quantity added</th>
+        <td *matCellDef="let element" mat-cell>{{element.quantity}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="decrease">
+        <th *matHeaderCellDef mat-header-cell></th>
+        <td *matCellDef="let element" mat-cell>
+          <button (click)="removeFromCart(element)" mat-button-raised mat-stroked-button>
+            Decrease Quantity
+          </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="increase">
+        <th *matHeaderCellDef mat-header-cell></th>
+        <td *matCellDef="let element" mat-cell>
+          <button (click)="addToCart(element)" mat-button-raised mat-stroked-button>
+            Increase Quantity
+          </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+      <tr *matHeaderRowDef="['product_name', 'color', 'quantity','price',  'decrease', 'increase']" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: ['product_name', 'color', 'quantity','price',  'decrease' , 'increase'];" mat-row></tr>
+      <tr mat-footer-row *matFooterRowDef="['product_name', 'color', 'quantity','price']"></tr>
+    </table>
+  </div>
+  <div>
+    <form [formGroup]="form">
+      <div class="form-group row">
+        <div class="col">
+          <div>
+            <label for="voucher"><b>Apply Voucher</b></label>
+            <input id="voucher" class="form-control" formControlName="voucher" />
+          </div>
+        </div>
+
+        <div class="col float-child">
+          <div>
+            <button (click)="applyVoucher()" mat-raised-button [disabled]="cart_items.length == 0"> Apply Voucher</button>
+          </div>
+        </div>
+        <i>Only one voucher can be applied at a time</i>
+      </div>
+      <div class="row"><span>
+          <b>Discounted Total</b> {{form.get('discountedTotal')?.value}}
+        </span>
+      </div>
+      <div style="margin-bottom: 3rem;"><button (click)="submit()" mat-raised-button [disabled]="cart_items.length == 0"> Buy </button></div>
+    </form>
+  </div>
+
+</div>
+<div *ngIf="cart_items.length == 0" style="margin: 2rem;">
+  <div class="alert alert-info"> No items are added to the cart </div>
+</div>

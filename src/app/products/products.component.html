@@ -1,0 +1,23 @@
+<!-- <div class="row container">
+  <h2>Products</h2> -->
+  <div class="container">
+    <div class="heading">Products</div>
+    <div class="row">
+      <mat-card class="mat-card" *ngFor="let product of products">
+        <mat-card-header>
+                  <mat-card-title>{{product.product_name}}</mat-card-title>
+        <mat-card-subtitle>{{product.category.name}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div>Color : {{product.color}}</div>
+        </mat-card-content>
+        <mat-card-actions style="margin-bottom: 2rem;">
+          <p><button mat-raised-button (click)="openDialog(product)">Product Details</button></p>
+          <p><button mat-raised-button (click)="addToCart(product)" [disabled]="product.quantity == 0"  >Add to Cart</button></p>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+<!-- </div> -->
